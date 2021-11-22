@@ -5,7 +5,7 @@
 > Github Repo
 > 
 
-[https://github.com/2insung/SystemProgramming_TEAM3.git](https://github.com/2insung/SystemProgramming_TEAM3.git)   
+[https://github.com/KNU-SYS3/SystemProgramming_TEAM3.git](https://github.com/KNU-SYS3/SystemProgramming_TEAM3.git)   
 > Notion Page
 >   
 [SYSTEM PROGRAMMING TEAM 3](https://www.notion.so/sys3)   
