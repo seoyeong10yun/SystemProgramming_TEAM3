@@ -1,5 +1,5 @@
 ## Github 사용법
-
+### Repo link https://github.com/KNU-SYS3/SystemProgramming_TEAM3.git 으로 변경된거에요.  
 >1. Git 설치 [https://git-scm.com/downloads](https://git-scm.com/downloads)
 >2. Git bash 나 Git CMD 사용
 >3. Git Clone -> 자신이 작업하고 싶은 폴더를 만들어서 cmd로 cd {폴더} 후 명령어 입력
