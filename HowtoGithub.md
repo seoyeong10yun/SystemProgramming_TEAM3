@@ -7,7 +7,7 @@
 ```
 ->자신의 작업 폴더를 정하고 repo 내려받기, 처음 세팅할 때만 입력
 
-$git clone <https://github.com/2insung/SystemProgramming_TEAM3.git>
+$git clone https://github.com/KNU-SYS3/SystemProgramming_TEAM3.git
 ```
 
 ![https://user-images.githubusercontent.com/84179188/142755918-b1ee59d7-b5bd-4295-b056-93ada21a38b8.png](https://user-images.githubusercontent.com/84179188/142755918-b1ee59d7-b5bd-4295-b056-93ada21a38b8.png)
@@ -99,7 +99,7 @@ git pull origin main / main branch에 있는 내용 내 작업 공간으로 내�
 
  1. 깃허브 들어가기
 
-[https://github.com/2insung/SystemProgramming_TEAM3](https://github.com/2insung/SystemProgramming_TEAM3)
+[https://github.com/KNU-SYS3/SystemProgramming_TEAM3.git](https://github.com/KNU-SYS3/SystemProgramming_TEAM3.git)
 
  2. 코드 수정 후 push 했다면 pull request 들어가기
 
