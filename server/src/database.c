@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <fcntl.h>
 
-#define database "../data/database"
+#define database "../data/database.csv"
 #define TRUE 1
 #define FALSE 0
 #define DEBUG 1 //when debugging, set value 1
@@ -21,7 +21,7 @@ void sendData(char* userName, char* text, int responseData);
 void isPossibleName(char *userName)
 {
     int fd;
-    if ((fd = open(database, O_RDONLY)) == -1)
+    if ((fd = open("../data/database.csv", O_RDONLY)) == -1)
     {
         perror("Error : No database file.\n");
         exit(1);
@@ -31,10 +31,8 @@ void isPossibleName(char *userName)
     close(fd);
 }
 
+// No main function in this file.
 // int main(){
-//     /*
-//     main function must deleted before submit.
-//     */
 //     if (DEBUG)
 //     {
 //         printf("It runs in Debug mod.\n");
