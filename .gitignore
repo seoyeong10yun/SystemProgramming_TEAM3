@@ -1,0 +1,12 @@
+*.dll
+*.exe
+*.o
+*.so
+*.com
+*.class
+
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
