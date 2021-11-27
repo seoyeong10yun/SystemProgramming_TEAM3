@@ -21,7 +21,7 @@ void sendData(char* userName, char* text, int responseData);
 void isPossibleName(char *userName)
 {
     int fd;
-    if ((fd = open("../data/database.csv", O_RDONLY)) == -1)
+    if ((fd = open(database, O_RDONLY)) == -1)
     {
         perror("Error : No database file.\n");
         exit(1);
