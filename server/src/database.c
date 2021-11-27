@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <fcntl.h>
 
-#define database "../data/database.csv"
+#define database "./data/database.csv"
 #define TRUE 1
 #define FALSE 0
 #define DEBUG 1 //when debugging, set value 1
