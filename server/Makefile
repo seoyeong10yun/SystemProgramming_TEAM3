@@ -1,5 +1,5 @@
 server: server.o database.o
-	cc -o server server.o /src/database.o
+	cc -o server server.o database.o
 server.o: server.c
 	cc -c server.c
 database.o: ./src/database.c
