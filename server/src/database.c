@@ -1,3 +1,8 @@
+/*
+Name : database.c
+function : read database or write database
+
+*/
 #pragma once
 
 #include <stdio.h>
@@ -8,11 +13,7 @@
 #define FALSE 0
 #define DEBUG 1 //when debugging, set value 1
 
-/*
-Name : database.c
-function : read database or write database
 
-*/
 
 //extern function test
 void sendData(char* userName, char* text, int responseData);
