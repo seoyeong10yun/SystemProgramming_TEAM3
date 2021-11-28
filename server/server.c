@@ -22,9 +22,6 @@ int main(){
 
 //implementations of functions
 void sendData(char* userName, char* text, int responseData){
-    if (DEBUG)
-    {
-        printf("userName : %s, text : %s, responseData : %d\n", userName, text, responseData);
-    }
+    
     
 }
