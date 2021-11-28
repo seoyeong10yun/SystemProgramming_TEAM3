@@ -6,7 +6,7 @@
 > 
 
 [https://github.com/KNU-SYS3/SystemProgramming_TEAM3.git](https://github.com/KNU-SYS3/SystemProgramming_TEAM3.git)   
-> Notion Page!!! << 꼭 읽어주세요
+> Notion Page << 꼭 읽어주세요!!!
 >   
 [SYSTEM PROGRAMMING TEAM 3](https://www.notion.so/sys3)   
 
