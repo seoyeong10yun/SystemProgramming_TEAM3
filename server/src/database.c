@@ -43,7 +43,7 @@ void isPossibleName(char *user_name)
         perror("Error : No database file.\n");
         exit(1);
     }
-    //test
+    //test 
     if (DEBUG)
     {
         WriteName(123, user_name, 0);
