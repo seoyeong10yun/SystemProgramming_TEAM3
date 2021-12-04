@@ -37,7 +37,9 @@ void isPossibleName(char *userName)
     //test
     if (DEBUG)
     {
+	
         WriteName(123, userName, 0);
+	
         //sendData(userName, "", 0);
     }
 
@@ -49,11 +51,13 @@ void isPossibleName(char *userName)
 csv파일의 첫번째 줄을 적는다.
 */
 void initDB(){
-    fp_User=fopen(DB_U,"r+");
-    fp_Chat=fopen(DB_C,"r+");
-
+    printf("init DB\n");
+    fp_User=fopen(DB_U,"w+");
+    fp_Chat=fopen(DB_C,"w+");
+    printf("middle DB\n");
     fprintf(fp_User,"USER_NAME,USER_IP,IS_BAN\n");
     fprintf(fp_Chat,"ID,FROM,TO,CONTENT,TIME\n");
+    printf("end DB\n");
 }
 
 //구조체를 쓰면 어떨까?
