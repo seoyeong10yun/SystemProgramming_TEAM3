@@ -9,6 +9,7 @@ function : open server and connect client to database
  
 //extern functions
 void isPossibleName(char *userName);
+void initDB();
 
 //function declare
 void sendData(char* userName, char* text, int responseData);
@@ -16,6 +17,12 @@ void childHandler(int signal);
 
 //main function
 int main() {
+    if (DEBUG){
+        printf("It runs in Debug mod.\n");
+        initDB();
+        isPossibleName("fhiller");
+        return 0;
+    }
     
     //childHandler 함수가 SIGCHLD 시그널을 처리할 수 있도록 시그널 설치
  
@@ -111,12 +118,6 @@ int main() {
     }
     close(listenFD);
 
-    // if (DEBUG){
-    //     printf("It runs in Debug mod.\n");
-    // }
-    
-    // char testName[50] = "fhiller";
-    // isPossibleName(testName);
 
     return 0;
 }

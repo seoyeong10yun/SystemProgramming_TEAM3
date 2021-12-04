@@ -18,10 +18,9 @@ FILE* fp_Chat; //채팅 관련 파일포인터
 
 typedef struct userData
 {
-    int user_id;
+    int user_ip;
     char user_name[512];
 }user_data;
-
 
 //extern function test
 void sendData(char* userName, char* text, int responseData);
@@ -35,19 +34,26 @@ void isPossibleName(char *userName)
         perror("Error : No database file.\n");
         exit(1);
     }
-    sendData(userName, "", 0);
+    //test
+    if (DEBUG)
+    {
+        WriteName(123, userName, 0);
+        //sendData(userName, "", 0);
+    }
 
     close(fd);
 }
 
+/*
+프로그램을 처음 시작할 때 사용.
+csv파일의 첫번째 줄을 적는다.
+*/
 void initDB(){
-
     fp_User=fopen(DB_U,"r+");
     fp_Chat=fopen(DB_C,"r+");
 
     fprintf(fp_User,"USER_NAME,USER_IP,IS_BAN\n");
     fprintf(fp_Chat,"ID,FROM,TO,CONTENT,TIME\n");
-
 }
 
 //구조체를 쓰면 어떨까?
@@ -61,15 +67,13 @@ void WriteMessage(long int m_id,long int From_id,long int To_id,char* content,in
 
 /*
 No main function in this file.
-*/
 int main(){
     if (DEBUG)
     {
         printf("It runs in Debug mod.\n");
-        initDB();
-        WriteName(123, "최준호", 0);
 
 
     }
     return 0;
 }
+*/
