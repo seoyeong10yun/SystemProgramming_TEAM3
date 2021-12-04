@@ -3,7 +3,6 @@ Name : database.c
 function : read database or write database
 
 */
-#pragma once
 
 #include <stdio.h>
 #include <fcntl.h>
@@ -16,6 +15,12 @@ function : read database or write database
 #define DEBUG 1 //when debugging, set value 1
 FILE* fp_User; //유저 관련 파일포인터
 FILE* fp_Chat; //채팅 관련 파일포인터
+
+typedef struct userData
+{
+    int user_id;
+    char user_name[512];
+}user_data;
 
 
 //extern function test
@@ -54,12 +59,17 @@ void WriteMessage(long int m_id,long int From_id,long int To_id,char* content,in
     fprintf(fp_Chat, "%ld,%ld,%ld,%s,%d\n", m_id, From_id, To_id, content, time);
 }
 
-// No main function in this file.
-// int main(){
-//     if (DEBUG)
-//     {
-//         printf("It runs in Debug mod.\n");
-//     }
+/*
+No main function in this file.
+*/
+int main(){
+    if (DEBUG)
+    {
+        printf("It runs in Debug mod.\n");
+        initDB();
+        WriteName(123, "최준호", 0);
 
-//     return 0;
-// }
+
+    }
+    return 0;
+}
