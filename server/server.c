@@ -1,14 +1,19 @@
 /*
 Name : server.c
-function : open server and connect client to database
-..
+
+Prototype Goal:
+program start -> initDB()
+receive name from client -> DB isPossibleName() -> server sendData()
+receive chat from client -> sendData() to all user
+
 */
 #include "header.h"
 #define DEBUG 1 //when debugging, set value 1
 #define LISTEN_QUEUE_SIZE 5
  
 //extern functions
-void isPossibleName(char *userName);
+void isPossibleName(char *user_name);
+void initDB();
 
 //function declare
 void sendData(char* userName, char* text, int responseData);
@@ -16,6 +21,13 @@ void childHandler(int signal);
 
 //main function
 int main() {
+    if (DEBUG){
+        //Database test
+        printf("Program is Running on Debug mod.\n");
+        initDB();
+        isPossibleName("testerHoon");
+        return 0;
+    }
     
     //childHandler 함수가 SIGCHLD 시그널을 처리할 수 있도록 시그널 설치
  
@@ -111,12 +123,6 @@ int main() {
     }
     close(listenFD);
 
-    // if (DEBUG){
-    //     printf("It runs in Debug mod.\n");
-    // }
-    
-    // char testName[50] = "fhiller";
-    // isPossibleName(testName);
 
     return 0;
 }
@@ -140,9 +146,6 @@ void childHandler(int signal)
 }
 
 void sendData(char* userName, char* text, int responseData){
-    if (DEBUG)
-    {
-        printf("userName : %s, text : %s, responseData : %d\n", userName, text, responseData);
-    }
+    
     
 }

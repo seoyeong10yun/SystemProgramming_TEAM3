@@ -1,0 +1,17 @@
+!help : 명령어 정보를 화면에 출력.
+
+!list : 화면에 유저 리스트를 출력.
+
+!message {user name} {string} : user name에 해당하는 이름이 있으면 해당 유저에게 string을 전달 //(채팅 색을 일반 채팅과는 다르게 표시).
+
+!dm {user name} : user name에 해당하는 이름이 있으면 Direct Message 요청을 전송.
+
+!y {user name} : Direct Message 요청이 들어왔을 때 해당 유저의 요청을 수락 후 DM 창을 화면에 출력.
+
+!ban {user name} : user name에 해당하는 이름이 있으면 해당 유저의 채팅이나 요청 무시.
+
+!unban {user name} : user name에 해당하는 이름이 있으면 해당 유저의 채팅이나 요청 무시.
+
+!name {user name} : user name에 해당하는 이름이 채팅방에 있는지 확인.
+
+!change {user name} : 자신의 이름을 user name으로 변경. 중복되는 이름이 있다면 에러 출력.
