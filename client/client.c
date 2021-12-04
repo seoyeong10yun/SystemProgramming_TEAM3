@@ -1,3 +1,12 @@
+/*
+Name : client.c
+
+Prototype Goal:
+program start -> show interface -> ask user_name -> sendData(name) -> receive data from server -> determine name or retry.
+receive chat fron CLI(user's keyboard) -> sendData(chat)
+receive chat from server -> print chat in UI
+
+*/
 #include <stdio.h>
 #define TRUE 1
 #define FALSE 0

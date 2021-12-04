@@ -1,14 +1,18 @@
 /*
 Name : server.c
-function : open server and connect client to database
-..
+
+Prototype Goal:
+program start -> initDB()
+receive name from client -> DB isPossibleName() -> server sendData()
+receive chat from client -> sendData() to all user
+
 */
 #include "header.h"
 #define DEBUG 1 //when debugging, set value 1
 #define LISTEN_QUEUE_SIZE 5
  
 //extern functions
-void isPossibleName(char *userName);
+void isPossibleName(char *user_name);
 void initDB();
 
 //function declare
@@ -18,9 +22,10 @@ void childHandler(int signal);
 //main function
 int main() {
     if (DEBUG){
-        printf("It runs in Debug mod.\n");
+        //Database test
+        printf("Program is Running on Debug mod.\n");
         initDB();
-        isPossibleName("fhiller");
+        isPossibleName("testerHoon");
         return 0;
     }
     
