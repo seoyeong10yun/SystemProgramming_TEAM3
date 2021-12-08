@@ -8,7 +8,7 @@ receive chat from client -> sendData() to all user
 
 */
 #include "header.h"
-#define DEBUG 1 //when debugging, set value 1
+#define DEBUG 0 //when debugging, set value 1
 #define LISTEN_QUEUE_SIZE 5
  
 //extern functions
@@ -21,13 +21,16 @@ void childHandler(int signal);
 
 //main function
 int main() {
-    if (DEBUG){
+    if (DEBUG){ 
         //Database test
-        printf("Program is Running on Debug mod.\n");
-        initDB();
+        printf("Program is Running on Debug mod. and go any way\n");
+        isPossibleName("testerHoon");
         isPossibleName("testerHoon");
         return 0;
     }
+
+    //init
+    initDB();
     
     //childHandler 함수가 SIGCHLD 시그널을 처리할 수 있도록 시그널 설치
  
@@ -100,10 +103,14 @@ int main() {
                 while((receivedBytes = read(connectFD, readBuff, BUFF_SIZE)) > 0)
                 {                
  
-                    printf("%lu bytes read\n", receivedBytes);
+                    printf("%lu bytes read\n", --receivedBytes);
                     readBuff[receivedBytes] = '\0';
                     fputs(readBuff, stdout);
                     fflush(stdout);
+
+                    //name database test
+                    isPossibleName(readBuff);
+                    
     
                     sprintf(sendBuff,"%s",readBuff);
                     write(connectFD, sendBuff, strlen(sendBuff));
