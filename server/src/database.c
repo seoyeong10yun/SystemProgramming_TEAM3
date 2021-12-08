@@ -87,7 +87,7 @@ output :
 return : char* user_data
 */
 // https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=tipsware&logNo=221690858146
-char *getNextData(char *db_start, char *db_buffer)
+char* getNextString(char *db_start, char *db_buffer)
 {
     //delimiter가 나올때 까지 buffer에 저장
     while (*db_start && *db_start != DB_DELIMITER)
