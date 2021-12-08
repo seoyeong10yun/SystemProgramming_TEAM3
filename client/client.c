@@ -10,7 +10,7 @@ receive chat from server -> print chat in UI
 #include <stdio.h>
 #define TRUE 1
 #define FALSE 0
-#define DEBUG 1 //when debugging, set value 1
+#define DEBUG 0 //when debugging, set value 1
 # include "header.h"
  
 int main(int argc, char** argv)
