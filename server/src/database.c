@@ -40,18 +40,44 @@ return :
 void isPossibleName(char *user_name)
 {
     int fd;
+    int i, j, k;
+    short int check_name_exist = 0;
+
     if ((fd = open(DB_USER, O_RDONLY)) == -1)
     {
         perror("Error : No database file.\n");
         exit(1);
     }
-    //test
-    if (DEBUG)
-    {
-        WriteName(123, user_name, 0);
-        //sendData(user_name, "", 0);
-    }
 
+    //search DB
+    char one_line_string[128], name_string[32], *parsing_string;
+    //첫 줄은 db 정보
+    fgets(one_line_string, 128, fd);
+
+    //parsing
+    while (NULL != fgets(one_line_string, 128, fd) && !check_name_exist)
+    {
+        parsing_string = one_line_string;
+        for (i = 0; *parsing_string; i++)
+        {
+            parsing_string = GetNextString(parsing_string, DB_DELIMITER, name_string);
+            if (i != 0)
+            {
+                continue;
+            }
+            printf("name : %s\n", name_string);
+            if (strcmp(name_string, user_name) == 0)
+            {
+                check_name_exist = 1;
+                //break;
+            }
+        }
+    }
+    if (check_name_exist)
+    {
+        printf("Result : name is already in the DB.\n");
+    }
+    
     close(fd);
 }
 /*
