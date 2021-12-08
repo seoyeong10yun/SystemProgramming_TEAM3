@@ -4,6 +4,7 @@
 *.so
 *.com
 *.class
+*.csv
 
 .vscode/*
 !.vscode/settings.json
