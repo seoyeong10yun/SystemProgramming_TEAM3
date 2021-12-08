@@ -30,6 +30,11 @@ typedef struct userData
 void sendData(char *user_name, char *user_text, int response_data);
 
 //function declare
+void isPossibleName(char *user_name);
+char* getNextString(char *db_start, char *db_buffer);
+void initDB();
+void WriteName(long int user_ip, char *user_name, int is_ban);
+void WriteMessage(long int m_id, long int from_id, long int to_id, char *user_text, int cur_time);
 
 /*
 이름을 입력받고 이름의 사용 가능 여부를 클라이언트로 전송하는 함수
