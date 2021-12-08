@@ -60,7 +60,7 @@ void isPossibleName(char *user_name)
         parsing_string = one_line_string;
         for (i = 0; *parsing_string; i++)
         {
-            parsing_string = GetNextString(parsing_string, DB_DELIMITER, name_string);
+            parsing_string = getNextString(parsing_string, name_string);
             if (i != 0)
             {
                 continue;
