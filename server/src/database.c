@@ -8,14 +8,16 @@ server isPossibleName() -> search DB -> {write data in DB and sendData(success)}
 */
 
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include <fcntl.h>
 
 #define DB_USER "./data/DB_User.csv"
 #define DB_CHAT "./data/DB_Chat.csv"
-#define DB_DELIMITER ','
+#define DB_DELIMITER ","
 #define TRUE 1
 #define FALSE 0
-#define DEBUG 1 //when debugging, set value 1
+#define DEBUG 0 //when debugging, set value 1
 FILE *fp_user;  //유저 관련 파일포인터
 FILE *fp_chat;  //채팅 관련 파일포인터
 
@@ -31,10 +33,11 @@ void sendData(char *user_name, char *user_text, int response_data);
 
 //function declare
 void isPossibleName(char *user_name);
-char* getNextString(char *db_start, char *db_buffer);
+const char* getField(char* line , int num);
 void initDB();
 void WriteName(long int user_ip, char *user_name, int is_ban);
 void WriteMessage(long int m_id, long int from_id, long int to_id, char *user_text, int cur_time);
+
 
 /*
 이름을 입력받고 이름의 사용 가능 여부를 클라이언트로 전송하는 함수
@@ -44,80 +47,60 @@ return :
 */
 void isPossibleName(char *user_name)
 {
-    int fd;
     int i, j, k;
-    short int check_name_exist = 0;
 
-    if ((fd = open(DB_USER, O_RDONLY)) == -1)
+    fp_user = fopen(DB_USER, "r+");
+    if (fp_user == NULL)
     {
         perror("Error : No database file.\n");
+        fclose(fp_user);
         exit(1);
     }
 
     //search DB
-    char one_line_string[128], name_string[32], *parsing_string;
-    //첫 줄은 db 정보
-    fgets(one_line_string, 128, fd);
+    short int check_name_exist = 0;
+    char one_line_string[128];
+    char* db_name_string;
 
-    //parsing
-    while (NULL != fgets(one_line_string, 128, fd) && !check_name_exist)
-    {
-        parsing_string = one_line_string;
-        for (i = 0; *parsing_string; i++)
-        {
-            parsing_string = getNextString(parsing_string, name_string);
-            if (i != 0)
-            {
-                continue;
-            }
-            printf("name : %s\n", name_string);
-            if (strcmp(name_string, user_name) == 0)
-            {
-                check_name_exist = 1;
-                //break;
-            }
+    while(fgets(one_line_string, 128, fp_user)){
+        char* tmp = strdup(one_line_string);
+        db_name_string = getField(tmp, 1);
+        if(strcmp(db_name_string, user_name) == 0){
+            check_name_exist = 1;
+            break;
         }
-    }
-    if (check_name_exist)
-    {
-        printf("Result : name is already in the DB.\n");
+        free(tmp);
     }
     
-    close(fd);
+    //return result
+    if (check_name_exist)
+    {
+        printf("Result : %s is already in the DB.\n", user_name);
+    }
+    else {
+        fprintf(fp_user, user_name);
+        fprintf(fp_user, DB_DELIMITER);
+        fprintf(fp_user, "test_ip");
+        fprintf(fp_user, DB_DELIMITER);
+        fprintf(fp_user, "test_is_ban");
+        fprintf(fp_user, "\n");
+        printf("Result : %s registers to DB.\n", user_name);
+    }
+    fclose(fp_user);
 }
 /*
-파일의 시작과 임시 저장할 버퍼를 통해 다음 정보의 시작 위치를 반환하는 함수.
-input : char* file_start, char* file_buffer
-output : 
-return : char* user_data
+
 */
-// https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=tipsware&logNo=221690858146
-char* getNextString(char *db_start, char *db_buffer)
-{
-    //delimiter가 나올때 까지 buffer에 저장
-    while (*db_start && *db_start != DB_DELIMITER)
-    {
-        *db_buffer++ = *db_start;
+const char* getField(char line[], int num){
+    const char * tok;
+    for(tok = strtok(line, DB_DELIMITER); tok && *tok; tok = strtok(NULL, ",\n")){
+        if(!--num){
+            return tok;
+        }
     }
-    //한 라인이 끝나는 위치라면 줄바꿈 문자 대신 널문자로 대체해준다.
-    if (*(db_buffer - 1) == '\n')
-    {
-        *(db_buffer - 1) = 0;
-    }
-    else
-    {
-        *db_buffer = 0;
-    }
-
-    if (*db_start == DB_DELIMITER)
-    {
-        db_start++;
-    }
-
-    // 탐색을 완료한 위치의 주소를 반환한다.
-    return db_start;
+    return NULL;
 }
-
+ 
 /*
 프로그램을 처음 시작할 때 사용.
 csv파일의 첫번째 줄, 유저 데이터 항목을 적는다.
@@ -127,17 +110,22 @@ return :
 */
 void initDB()
 {
+    remove(DB_USER);
+    remove(DB_CHAT);
+
     fp_user = fopen(DB_USER, "w+");
     fp_chat = fopen(DB_CHAT, "w+");
 
-    if (fp_user == NULL)
-    {
-        fprintf(fp_user, "USER_NAME,USER_IP,IS_BAN\n");
+    fprintf(fp_user, "USER_NAME,USER_IP,IS_BAN\n");
+    fprintf(fp_chat, "ID,FROM,TO,CONTENT,TIME\n");
+    
+    if(DEBUG){
+        fprintf(fp_user, "tester1,123,0\n");
+        fprintf(fp_user, "tester2,124,0\n");
     }
-    if (fp_chat == NULL)
-    {
-        fprintf(fp_chat, "ID,FROM,TO,CONTENT,TIME\n");
-    }
+
+    fclose(fp_user);
+    fclose(fp_chat);
 }
 
 //ip가 어디에 활용되는지 궁금합니다.
