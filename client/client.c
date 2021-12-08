@@ -10,8 +10,9 @@ receive chat from server -> print chat in UI
 #include <stdio.h>
 #define TRUE 1
 #define FALSE 0
-#define DEBUG 0 //when debugging, set value 1
+#define DEBUG 1 //when debugging, set value 1
 # include "header.h"
+#define namelen 20
  
 int main(int argc, char** argv)
 {
@@ -42,6 +43,11 @@ int main(int argc, char** argv)
         int readBytes, writtenBytes;
         char sendBuffer[BUFFER_SIZE];
         char receiveBuffer[BUFFER_SIZE];
+        char user_name[namelen] = void nameset(); // 닉네임 설정
+
+        
+
+
  
         while (1) 
         {
@@ -70,3 +76,22 @@ int main(int argc, char** argv)
  
     return 0;
 }    
+
+// 코드 날라가서 급한대로 다시 작성하느라 테스트 못해보고 대충 틀만 잡아봤습니다
+void nameset()
+{
+    printf("사용할 닉네임을 입력하세요 ::\n"); //사용자 닉네임 입력
+    scanf("%s", user_name);
+    fflush(stdin);
+
+    write(connectFD, user_name, namelen); // 서버에 입력한 닉네임 전송
+
+    while( namecheck = read(connectFD, receiveBuffer, BUFF_SIZE) == -1 ) // 서버에서 닉네임 중복 여부 계속 수신
+        {
+            printf("이미 사용 중인 닉네임입니다. 다시 입력해주십시오.\n"); // 중복시 재입력
+            scanf("%s", user_name);
+            fflush(stdin);
+        }
+    
+    return user_name;
+}
