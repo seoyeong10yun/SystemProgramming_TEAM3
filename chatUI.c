@@ -34,7 +34,7 @@ int main()
 	bkgd(COLOR_PAIR(1));
 	start_color();
 	attron(COLOR_PAIR(2)|A_BOLD);
-	mvprintw(1,3,"CHATTING SYSTEM");
+	mvprintw(1,3,"HI!");
 	attroff(COLOR_PAIR(1));
 	box(stdscr,0,0);
 	refresh();
